@@ -169,11 +169,9 @@ http://www.django-rest-framework.org/tutorial/6-viewsets-and-routers#using-route
 .. code-block:: python
 
 	from fcm_django.api.rest_framework import FCMDeviceAuthorizedViewSet
-
 	from rest_framework.routers import DefaultRouter
 
 	router = DefaultRouter()
-
 	router.register('devices', FCMDeviceAuthorizedViewSet)
 
 	urlpatterns = patterns('',
