@@ -3,10 +3,11 @@ fcm-django
 
 
 .. image:: https://badge.fury.io/py/fcm-django.svg 
-	:target: https://badge.fury.io/py/fcm-django 
+	:target: https://badge.fury.io/py/fcm-django-bluelabs 
 .. image:: https://en.cryptobadges.io/badge/small/3GHRdxw64kYKbG2RXZNtKveMPpSzMy7CLR 
 	:target: https://en.cryptobadges.io/donate/3GHRdxw64kYKbG2RXZNtKveMPpSzMy7CLR
 
+This is a fork of the upstream package https://github.com/xtrinch/fcm-django with updated versions and matching Django 2.2 grammar.
 
 Django app for Firebase Cloud Messaging. Used as an unified platform for sending push notifications to mobile devices & browsers (android / ios / chrome / firefox / ...).
 
@@ -16,7 +17,7 @@ FCMDevice model fields
  - *active* (default: true)
  - *user* (optional)
  - *device_id* (optional - can be used to uniquely identify devices)
- - *type* ('android', 'web', 'ios')
+ - *type* ('android', 'web', 'ios')  # default to None which means "all"
 
 Functionality:
  - all necessary migrations
@@ -28,7 +29,7 @@ Functionality:
 
 Setup
 -----
-You can install the library directly from pypi using pip:
+You can install the upstream (not this fork [yet]) library directly from pypi using pip:
 
 	$ pip install fcm-django
 
@@ -44,15 +45,13 @@ Edit your settings.py file:
 
 	FCM_DJANGO_SETTINGS = {
 		"APP_VERBOSE_NAME": "[string for AppConfig's verbose_name]",
-		 # default: _('FCM Django')
-		"FCM_SERVER_KEY": "[your api key]",
-		 # true if you want to have only one active device per registered user at a time
-		 # default: False
-		"ONE_DEVICE_PER_USER": True/False,
-		 # devices to which notifications cannot be sent,
-		 # are deleted upon receiving error response from FCM
-		 # default: False
-		"DELETE_INACTIVE_DEVICES": True/False,
+		# default: _('FCM Django')
+		"FCM_SERVER_KEY": "[ your key from https://console.firebase.google.com/u/0/project/<your project>/settings/cloudmessaging/ ]",
+		# true if you want to have only one active device per registered user at a time
+		"ONE_DEVICE_PER_USER": False,  # default: False
+		# devices to which notifications cannot be sent,
+		# are deleted upon receiving error response from FCM
+		"DELETE_INACTIVE_DEVICES": False,  # default: False
 	}
 
 Native Django migrations are in use. ``manage.py migrate`` will install and migrate all models.
@@ -175,12 +174,12 @@ http://www.django-rest-framework.org/tutorial/6-viewsets-and-routers#using-route
 
 	router = DefaultRouter()
 
-	router.register(r'devices', FCMDeviceAuthorizedViewSet)
+	router.register('devices', FCMDeviceAuthorizedViewSet)
 
 	urlpatterns = patterns('',
 		# URLs will show up at <api_root>/devices
 		# DRF browsable API which lists all available endpoints
-		url(r'^', include(router.urls)),
+		path('api/', include(router.urls)),
 		# ...
 	)
 
@@ -194,14 +193,14 @@ http://www.django-rest-framework.org/tutorial/6-viewsets-and-routers#binding-vie
 
 	urlpatterns = patterns('',
 		# Only allow creation of devices by authenticated users
-		url(r'^devices?$', FCMDeviceAuthorizedViewSet.as_view({'post': 'create'}), name='create_fcm_device'),
+		path('api/devices?$', FCMDeviceAuthorizedViewSet.as_view({'post': 'create'}), name='create_fcm_device'),
 		# ...
 	)
 
 Demo project for implementation of web push notifications
 -------------------
 Demonstrates the use of service workers:
-https://github.com/xtrinch/fcm-django-web-demo
+https://github.com/Blue-Labs/fcm-django-web-demo
 
 
 Python 3 support
@@ -215,4 +214,4 @@ https://github.com/olucurious/PyFCM
 
 Need help, have any questions, suggestions?
 ----------------
-Submit an issue/PR or email me at mojca.rojko@gmail.com
+Submit an issue/PR or email me at david.ford@blue-labs.org
