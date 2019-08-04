@@ -8,7 +8,8 @@ Upstream package:
 .. image:: https://en.cryptobadges.io/badge/small/3GHRdxw64kYKbG2RXZNtKveMPpSzMy7CLR 
 	:target: https://en.cryptobadges.io/donate/3GHRdxw64kYKbG2RXZNtKveMPpSzMy7CLR
 
-This is a fork of the upstream package https://github.com/xtrinch/fcm-django with updated versions and matching Django 2.2 grammar.
+This is a fork of the upstream package https://github.com/xtrinch/fcm-django with updated
+dependency versions and matching Django 2.2 grammar.
 
 Django app for Firebase Cloud Messaging. Used as an unified platform for sending push notifications to mobile devices & browsers (android / ios / chrome / firefox / ...).
 
