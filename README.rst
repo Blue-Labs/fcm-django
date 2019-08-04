@@ -1,9 +1,10 @@
 fcm-django
 =========================
 
+Upstream package:
 
 .. image:: https://badge.fury.io/py/fcm-django.svg 
-	:target: https://badge.fury.io/py/fcm-django-bluelabs 
+	:target: https://badge.fury.io/py/fcm-django 
 .. image:: https://en.cryptobadges.io/badge/small/3GHRdxw64kYKbG2RXZNtKveMPpSzMy7CLR 
 	:target: https://en.cryptobadges.io/donate/3GHRdxw64kYKbG2RXZNtKveMPpSzMy7CLR
 
