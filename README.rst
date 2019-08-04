@@ -11,7 +11,8 @@ Upstream package:
 This is a fork of the upstream package https://github.com/xtrinch/fcm-django with updated
 dependency versions and matching Django 2.2 grammar.
 
-Django app for Firebase Cloud Messaging. Used as an unified platform for sending push notifications to mobile devices & browsers (android / ios / chrome / firefox / ...).
+Django app for Firebase Cloud Messaging. Used as an unified platform for sending push
+notifications to mobile devices and browsers (android / ios / chrome / firefox / ...).
 
 FCMDevice model fields
  - *registration_id* (required - is FCM token)

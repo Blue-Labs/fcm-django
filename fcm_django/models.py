@@ -1,13 +1,11 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from .settings import FCM_DJANGO_SETTINGS as SETTINGS
 
 
-@python_2_unicode_compatible
 class Device(models.Model):
     name = models.CharField(
         max_length=255,
@@ -152,9 +150,10 @@ class FCMDeviceQuerySet(models.query.QuerySet):
 
 class AbstractFCMDevice(Device):
     DEVICE_TYPES = (
-        (u'ios', u'ios'),
-        (u'android', u'android'),
-        (u'web', u'web')
+        ('ios', 'ios'),
+        ('android', 'android'),
+        ('web', 'web'),
+        ('all', 'all'),
     )
 
     device_id = models.CharField(
